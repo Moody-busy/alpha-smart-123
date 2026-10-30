@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: 40 33% 98%;
+    --foreground: 240 16% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 16% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 16% 12%;
+    --primary: 43 74% 44%;
+    --primary-foreground: 240 18% 5%;
+    --secondary: 40 25% 94%;
+    --secondary-foreground: 240 16% 14%;
+    --muted: 40 25% 94%;
+    --muted-foreground: 240 8% 40%;
+    --accent: 36 72% 38%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 40 22% 85%;
+    --input: 40 25% 88%;
+    --ring: 43 74% 44%;
+    --chart-1: 43 74% 44%;
+    --chart-2: 36 72% 38%;
+    --chart-3: 240 10% 30%;
+    --chart-4: 43 74% 58%;
+    --chart-5: 27 87% 55%;
+    --gold-from: 40 78% 42%;
+    --gold-to: 33 82% 30%;
+    --radius: 0.75rem;
+    --font-heading: ui-sans-serif, system-ui, sans-serif;
+    --font-body: ui-sans-serif, system-ui, sans-serif;
+    --font-display: ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --sidebar-background: 40 33% 98%;
+    --sidebar-foreground: 240 16% 14%;
+    --sidebar-primary: 43 74% 44%;
+    --sidebar-primary-foreground: 240 18% 5%;
+    --sidebar-accent: 40 25% 94%;
+    --sidebar-accent-foreground: 240 16% 12%;
+    --sidebar-border: 40 22% 85%;
+    --sidebar-ring: 43 74% 44%;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: 240 18% 5%;
+    --foreground: 44 33% 93%;
+    --card: 228 14% 8%;
+    --card-foreground: 44 33% 93%;
+    --popover: 228 14% 8%;
+    --popover-foreground: 44 33% 93%;
+    --primary: 46 63% 52%;
+    --primary-foreground: 240 18% 5%;
+    --secondary: 228 14% 12%;
+    --secondary-foreground: 44 33% 93%;
+    --muted: 228 14% 12%;
+    --muted-foreground: 35 53% 83%;
+    --accent: 36 72% 39%;
+    --accent-foreground: 44 33% 93%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 44 33% 93%;
+    --border: 43 45% 28%;
+    --input: 43 40% 20%;
+    --ring: 46 63% 52%;
+    --chart-1: 46 63% 52%;
+    --chart-2: 36 72% 39%;
+    --chart-3: 35 53% 83%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --gold-from: 46 63% 52%;
+    --gold-to: 36 72% 39%;
+    --sidebar-background: 240 18% 5%;
+    --sidebar-foreground: 35 53% 83%;
+    --sidebar-primary: 46 63% 52%;
+    --sidebar-primary-foreground: 240 18% 5%;
+    --sidebar-accent: 228 14% 12%;
+    --sidebar-accent-foreground: 44 33% 93%;
+    --sidebar-border: 43 45% 28%;
+    --sidebar-ring: 46 63% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+@layer components {
+  .input-base {
+    @apply w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border/60 text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/60 focus:gold-glow transition-all;
+  }
+}
+
+@layer utilities {
+  .gold-text {
+    background: linear-gradient(135deg, hsl(var(--gold-from)) 0%, hsl(var(--gold-to)) 50%, hsl(var(--gold-from)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .gold-glow {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.4), 0 0 24px -6px hsl(var(--primary) / 0.5);
+  }
+  .gold-glow-strong {
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.6), 0 0 32px -2px hsl(var(--primary) / 0.7);
+  }
+  .frosted {
+    background: hsl(var(--card) / 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .shimmer {
+    background: linear-gradient(110deg, transparent 30%, hsl(var(--primary) / 0.25) 50%, transparent 70%);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  @keyframes badge-glow {
+    0%, 100% { box-shadow: 0 0 0 1px hsl(var(--primary) / 0.5), 0 0 12px -4px hsl(var(--primary) / 0.6); }
+    50% { box-shadow: 0 0 0 1px hsl(var(--primary) / 0.8), 0 0 24px -2px hsl(var(--primary) / 0.9); }
+  }
+  .badge-glow {
+    animation: badge-glow 2.4s ease-in-out infinite;
+  }
+  @keyframes msg-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .msg-in {
+    animation: msg-in 0.35s ease-out;
+  }
+  @keyframes typing-dot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+}
+
+/* Push44 – Permanently hide Base44 branding badge */
+#base44-edit-badge, #base44-badge, .base44-badge, div[id*='base44'], [data-base44-badge], .made-with-base44, [class*='base44'], #admin-footer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

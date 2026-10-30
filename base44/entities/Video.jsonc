@@ -1,0 +1,75 @@
+{
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "category": {
+      "type": "string",
+      "title": "Category"
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "title": "Thumbnail URL"
+    },
+    "video_url": {
+      "type": "string",
+      "title": "Video URL"
+    },
+    "uploader_name": {
+      "type": "string",
+      "title": "Uploader Name"
+    },
+    "uploader_role": {
+      "type": "string",
+      "title": "Uploader Role",
+      "enum": [
+        "Student",
+        "Teacher"
+      ]
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "video_url",
+    "uploader_name",
+    "uploader_role"
+  ],
+  "name": "Video",
+  "type": "object",
+  "rls": {
+    "read": {},
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

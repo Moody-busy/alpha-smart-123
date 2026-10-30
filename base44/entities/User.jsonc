@@ -1,0 +1,27 @@
+{
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "The role of the user in the app",
+      "enum": [
+        "admin",
+        "user"
+      ]
+    },
+    "account_type": {
+      "type": "string",
+      "title": "Member Type",
+      "description": "Whether the member teaches or learns on the hub",
+      "enum": [
+        "Teacher",
+        "Student"
+      ],
+      "default": "Student"
+    }
+  },
+  "required": [
+    "role"
+  ],
+  "name": "User",
+  "type": "object"
+}

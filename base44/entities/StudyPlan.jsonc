@@ -1,0 +1,128 @@
+{
+  "name": "StudyPlan",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "title": "Member ID"
+    },
+    "user_name": {
+      "type": "string",
+      "title": "Member Name"
+    },
+    "account_type": {
+      "type": "string",
+      "title": "Plan For",
+      "enum": [
+        "Teacher",
+        "Student"
+      ],
+      "default": "Student"
+    },
+    "goal": {
+      "type": "string",
+      "title": "Goal"
+    },
+    "level": {
+      "type": "string",
+      "title": "Level"
+    },
+    "hours_per_week": {
+      "type": "integer",
+      "title": "Hours Per Week"
+    },
+    "title": {
+      "type": "string",
+      "title": "Plan Title"
+    },
+    "summary": {
+      "type": "string",
+      "title": "Summary"
+    },
+    "milestones": {
+      "type": "array",
+      "title": "Schedule",
+      "items": {
+        "type": "object",
+        "properties": {
+          "week": {
+            "type": "integer"
+          },
+          "focus": {
+            "type": "string"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "week",
+          "focus",
+          "tasks"
+        ]
+      }
+    },
+    "resources": {
+      "type": "array",
+      "title": "Resources",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tip": {
+      "type": "string",
+      "title": "Coach Tip"
+    }
+  },
+  "required": [
+    "user_id",
+    "account_type",
+    "goal",
+    "title",
+    "milestones"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

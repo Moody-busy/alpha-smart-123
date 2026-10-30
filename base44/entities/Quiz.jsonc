@@ -1,0 +1,82 @@
+{
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "category": {
+      "type": "string",
+      "title": "Category"
+    },
+    "teacher_name": {
+      "type": "string",
+      "title": "Created By"
+    },
+    "questions": {
+      "type": "array",
+      "title": "Questions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "correct_index": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "question",
+          "options",
+          "correct_index"
+        ]
+      }
+    }
+  },
+  "required": [
+    "title",
+    "questions"
+  ],
+  "name": "Quiz",
+  "type": "object",
+  "rls": {
+    "read": {},
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

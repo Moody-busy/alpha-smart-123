@@ -1,0 +1,65 @@
+{
+  "properties": {
+    "quiz_id": {
+      "type": "string",
+      "title": "Quiz ID"
+    },
+    "quiz_title": {
+      "type": "string",
+      "title": "Quiz Title"
+    },
+    "student_id": {
+      "type": "string",
+      "title": "Student ID"
+    },
+    "student_name": {
+      "type": "string",
+      "title": "Student Name"
+    },
+    "score": {
+      "type": "integer",
+      "title": "Correct Answers"
+    },
+    "total": {
+      "type": "integer",
+      "title": "Total Questions"
+    },
+    "percent": {
+      "type": "integer",
+      "title": "Score Percent"
+    },
+    "points_earned": {
+      "type": "integer",
+      "title": "Points Earned"
+    },
+    "time_seconds": {
+      "type": "integer",
+      "title": "Time Taken (seconds)"
+    }
+  },
+  "required": [
+    "quiz_id",
+    "quiz_title",
+    "student_id",
+    "score",
+    "total"
+  ],
+  "name": "QuizAttempt",
+  "type": "object",
+  "rls": {
+    "read": {},
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
